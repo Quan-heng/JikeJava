@@ -1,4 +1,3 @@
-## 测试
 ### 本代码使用okHttpClient在gateway中调用后台服务
 同时启动
 * NettyServerApplication
