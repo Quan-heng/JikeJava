@@ -1,4 +1,4 @@
-package io.quanheng.gateway.outbound.httpclient4;
+package io.quanheng.gateway.outbound.okhttp;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;

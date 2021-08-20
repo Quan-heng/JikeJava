@@ -6,7 +6,6 @@ import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.util.ReferenceCountUtil;
 import io.quanheng.gateway.filter.HeaderHttpRequestFilter;
 import io.quanheng.gateway.filter.HttpRequestFilter;
-import io.quanheng.gateway.outbound.httpclient4.HttpOutboundHandler;
 import io.quanheng.gateway.outbound.okhttp.OkhttpOutboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
