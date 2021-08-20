@@ -14,7 +14,6 @@ import io.quanheng.gateway.router.HttpEndpointRouter;
 import io.quanheng.gateway.router.RandomHttpEndpointRouter;
 import okhttp3.*;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.nio.reactor.IOReactorConfig;
 import org.apache.http.protocol.HTTP;
 
 import java.io.IOException;
@@ -27,7 +26,7 @@ import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 public class OkhttpOutboundHandler  {
-    private  OkHttpClient okClient = new OkHttpClient();;
+    private  OkHttpClient okClient;
     private ExecutorService proxyService;
     private List<String> backendUrls;
 
@@ -43,13 +42,6 @@ public class OkhttpOutboundHandler  {
         proxyService = new ThreadPoolExecutor(cores, cores,
                 keepAliveTime, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(queueSize),
                 new NamedThreadFactory("proxyService"), handler);
-
-        IOReactorConfig ioConfig = IOReactorConfig.custom()
-                .setConnectTimeout(1000)
-                .setSoTimeout(1000)
-                .setIoThreadCount(cores)
-                .setRcvBufSize(32 * 1024)
-                .build();
 
         okClient = new OkHttpClient();
     }
