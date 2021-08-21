@@ -4,8 +4,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.util.ReferenceCountUtil;
-import io.quanheng.gateway.filter.HeaderHttpRequestFilter;
 import io.quanheng.gateway.filter.HttpRequestFilter;
+import io.quanheng.gateway.filter.ProxyBizFilter;
 import io.quanheng.gateway.outbound.okhttp.OkhttpOutboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
     private final List<String> proxyServer;
     //private HttpOutboundHandler handler;
     private OkhttpOutboundHandler handler;
-    private HttpRequestFilter filter = new HeaderHttpRequestFilter();
+    private HttpRequestFilter filter = new ProxyBizFilter();
     
     public HttpInboundHandler(List<String> proxyServer) {
         this.proxyServer = proxyServer;

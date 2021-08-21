@@ -52,6 +52,7 @@ public class OkhttpOutboundHandler  {
 
     public void handle(final FullHttpRequest fullRequest, final ChannelHandlerContext ctx, HttpRequestFilter filter) {
         String backendUrl = router.route(this.backendUrls);
+        filter.filter(fullRequest, ctx);
         //final String url = backendUrl + fullRequest.uri();
         final String url = backendUrl;
         filter.filter(fullRequest, ctx);
