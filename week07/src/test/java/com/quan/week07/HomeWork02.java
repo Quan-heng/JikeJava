@@ -38,8 +38,6 @@ public class HomeWork02 {
         while (!executorService.isTerminated()) {}
         long end = System.currentTimeMillis();
         System.out.println("用时：" + (end - start) + "ms");
-
-
     }
 
     public List<Orders> getInitData() {

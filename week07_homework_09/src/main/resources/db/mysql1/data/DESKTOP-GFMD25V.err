@@ -1,0 +1,23 @@
+2021-09-21T14:23:40.511693Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-09-21T14:23:40.511756Z 0 [System] [MY-013169] [Server] D:\00Java进阶训练营\Week07\主从练习\mysql1\bin\mysqld.exe (mysqld 8.0.21) initializing of server in progress as process 2360
+2021-09-21T14:23:40.623651Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2021-09-21T14:24:01.898721Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2021-09-21T14:24:51.074404Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2021-09-21T14:28:27.939781Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-09-21T14:28:27.939863Z 0 [System] [MY-010116] [Server] D:\00Java进阶训练营\Week07\主从练习\mysql1\bin\mysqld.exe (mysqld 8.0.21) starting as process 8932
+2021-09-21T14:28:28.063410Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2021-09-21T14:28:32.362395Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2021-09-21T14:28:33.135480Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2021-09-21T14:28:39.280189Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2021-09-21T14:28:39.283111Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2021-09-21T14:28:39.640661Z 0 [System] [MY-010931] [Server] D:\00Java进阶训练营\Week07\主从练习\mysql1\bin\mysqld.exe: ready for connections. Version: '8.0.21'  socket: ''  port: 3316  MySQL Community Server - GPL.
+2021-09-22T14:18:05.288334Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-09-22T14:18:05.289172Z 0 [System] [MY-010116] [Server] D:\00Java进阶训练营\Week07\主从练习\mysql1\bin\mysqld.exe (mysqld 8.0.21) starting as process 10380
+2021-09-22T14:18:05.918922Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2021-09-22T14:18:10.667523Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2021-09-22T14:18:12.437936Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2021-09-22T14:18:13.423216Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2021-09-22T14:18:13.432974Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2021-09-22T14:18:14.141668Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2021-09-22T14:18:14.145073Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2021-09-22T14:18:14.458681Z 0 [System] [MY-010931] [Server] D:\00Java进阶训练营\Week07\主从练习\mysql1\bin\mysqld.exe: ready for connections. Version: '8.0.21'  socket: ''  port: 3316  MySQL Community Server - GPL.

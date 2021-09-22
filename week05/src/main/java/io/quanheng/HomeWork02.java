@@ -1,6 +1,5 @@
 package io.quanheng;
 
-import io.quanheng.entity.Device;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -13,6 +12,5 @@ public class HomeWork02 {
         Device device001 = (Device) context.getBean("device001");
         System.out.println(device001.toString());
     }
-
-
 }
+

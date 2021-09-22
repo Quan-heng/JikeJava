@@ -9,7 +9,7 @@
                         http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
-    <bean id="device001" class="io.quanheng.entity.Device">
+    <bean id="device001" class="io.quanheng.Device">
         <property name="id" value="001"/>
         <property name="name" value="device01"/>
     </bean>
