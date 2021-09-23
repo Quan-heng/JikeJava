@@ -24,7 +24,7 @@ class Week07Homework10ApplicationTests {
     }
 
     /**
-     * 从master读
+     * 从master写
      */
     @Test
     void writeTest(){
