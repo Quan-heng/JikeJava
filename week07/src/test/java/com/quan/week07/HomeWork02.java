@@ -21,13 +21,13 @@ public class HomeWork02 {
     ExecutorService executorService = Executors.newFixedThreadPool(18);
 
     /**
-     * 1000000用100次分配插入用时20s。
+     * 1000000用1000次分配插入用时18s。
      */
     @Test
     public void testInsert() {
         long start = System.currentTimeMillis();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             final int index = i;
             executorService.execute(() -> {
                 ordersMapper.insertBatchSomeColumn(getInitData());
@@ -41,7 +41,7 @@ public class HomeWork02 {
     }
 
     public List<Orders> getInitData() {
-        List<Orders> orders = Collections.nCopies(10000, new Orders("test", 123));
+        List<Orders> orders = Collections.nCopies(1000, new Orders("test", 123));
         return orders;
     }
 }
