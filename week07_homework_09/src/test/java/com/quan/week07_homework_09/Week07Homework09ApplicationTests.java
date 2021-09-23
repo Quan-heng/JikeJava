@@ -19,7 +19,8 @@ class Week07Homework09ApplicationTests {
 
     @Test
     void insertInMasterReadFromSlave(){
-        Orders orders = new Orders("test",123);
+        Orders orders = new Orders();
+        orders.setName("test");
         queryService.save(orders);
         Orders slaveOrders = queryService.list().get(0);
         Assertions.assertEquals("test",slaveOrders.getName());

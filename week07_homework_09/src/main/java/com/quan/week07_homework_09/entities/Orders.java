@@ -19,8 +19,4 @@ public class Orders {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateTime;
 
-    public Orders(String name, long userId) {
-        this.name = name;
-        this.userId = userId;
-    }
 }
