@@ -18,8 +18,8 @@ public class DataSourceConfig {
      * db1数据库配置
      */
     @Bean("master")
-    @ConfigurationProperties(prefix = "master.datasource")
-    public DataSource db1Source() {
+    @ConfigurationProperties(prefix = "spring.datasource.master")
+    public DataSource masterSource() {
         return DataSourceBuilder.create().build();
     }
 
@@ -27,8 +27,8 @@ public class DataSourceConfig {
      * db2数据库配置
      */
     @Bean("slave")
-    @ConfigurationProperties(prefix = "slave.datasource")
-    public DataSource db2Source() {
+    @ConfigurationProperties(prefix = "spring.datasource.slave")
+    public DataSource slaveSource() {
         return DataSourceBuilder.create().build();
     }
 
@@ -40,12 +40,12 @@ public class DataSourceConfig {
     public DataSource dynamicDataSource() {
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
         // 默认数据源
-        dynamicDataSource.setDefaultTargetDataSource(db1Source());
+        dynamicDataSource.setDefaultTargetDataSource(masterSource());
 
         // 配置多数据源
         Map<Object, Object> dsMap = new HashMap(5);
-        dsMap.put("db1", db1Source());
-        dsMap.put("db2", db2Source());
+        dsMap.put("master", masterSource());
+        dsMap.put("slave", slaveSource());
 
         dynamicDataSource.setTargetDataSources(dsMap);
 

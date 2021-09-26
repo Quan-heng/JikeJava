@@ -1,4 +1,4 @@
-package com.quan.week07_homework_09.entities;
+package com.quan.week07_homework_10.entities;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -18,5 +18,4 @@ public class Orders {
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateTime;
-
 }
