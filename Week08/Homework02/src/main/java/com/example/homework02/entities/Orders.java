@@ -1,4 +1,4 @@
-package com.quan.homework02.entities;
+package com.example.homework02.entities;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;

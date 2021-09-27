@@ -1,4 +1,5 @@
 ###Homework2
+> 数据库用的mysql-5.7 docker境像，用mysql-8.0.25 mybatis连接会报错
 1. sharding-proxy配置
   - config-sharding.yaml
 ```schemaName: sharding_db

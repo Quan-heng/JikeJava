@@ -1,8 +1,7 @@
-package com.quan.homework02.configs;
+package com.example.homework02.configs;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
-import com.baomidou.mybatisplus.core.injector.methods.*;
 import com.baomidou.mybatisplus.extension.injector.methods.InsertBatchSomeColumn;
 
 import java.util.List;

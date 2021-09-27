@@ -1,4 +1,4 @@
-package com.quan.homework02.configs;
+package com.example.homework02.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

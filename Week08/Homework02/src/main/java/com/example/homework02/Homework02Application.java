@@ -1,4 +1,4 @@
-package com.quan.homework02;
+package com.example.homework02;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
