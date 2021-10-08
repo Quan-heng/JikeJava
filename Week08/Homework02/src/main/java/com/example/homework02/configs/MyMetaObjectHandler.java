@@ -1,4 +1,4 @@
-package com.quan.homework02.configs;
+package com.example.homework02.configs;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
