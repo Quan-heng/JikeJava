@@ -2,14 +2,23 @@ package io.kimmking.rpcfx.client;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.ParserConfig;
 import io.kimmking.rpcfx.api.*;
 import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.springframework.cglib.proxy.Enhancer;
+import org.springframework.cglib.proxy.MethodInterceptor;
+import org.springframework.cglib.proxy.MethodProxy;
 
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -40,13 +49,101 @@ public final class Rpcfx {
     }
 
     public static <T> T create(final Class<T> serviceClass, final String url, Filter... filters) {
-
         // 0. 替换动态代理 -> 字节码生成
-        return (T) Proxy.newProxyInstance(Rpcfx.class.getClassLoader(), new Class[]{serviceClass}, new RpcfxInvocationHandler(serviceClass, url, filters));
-
+        //return (T) Proxy.newProxyInstance(Rpcfx.class.getClassLoader(), new Class[]{serviceClass}, new RpcfxInvocationHandler(serviceClass, url, filters));
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(serviceClass);
+        enhancer.setCallback(new MyMethodInterceptor(serviceClass,url));
+        return (T)enhancer.create();
     }
 
-    public static class RpcfxInvocationHandler implements InvocationHandler {
+    public static class MyMethodInterceptor implements MethodInterceptor{
+        public static final MediaType JSONTYPE = MediaType.get("application/json; charset=utf-8");
+
+        private final Class<?> serviceClass;
+        private final String url;
+        private final Filter[] filters;
+        public <T> MyMethodInterceptor(Class<T> serviceClass, String url, Filter... filters){
+            this.serviceClass = serviceClass;
+            this.url = url;
+            this.filters = filters;
+        }
+
+        @Override
+        public Object intercept(Object o, Method method, Object[] params, MethodProxy methodProxy) throws Throwable {
+            RpcfxRequest request = new RpcfxRequest();
+            request.setServiceClass(this.serviceClass.getName());
+            request.setMethod(method.getName());
+            request.setParams(params);
+
+            if (null!=filters) {
+                for (Filter filter : filters) {
+                    if (!filter.filter(request)) {
+                        return null;
+                    }
+                }
+            }
+
+            RpcfxResponse response = post(request, url);
+
+            // 加filter地方之三
+            // Student.setTeacher("cuijing");
+
+            // 这里判断response.status，处理异常
+            // 考虑封装一个全局的RpcfxException
+
+            return JSON.parse(response.getResult().toString());
+        }
+
+        private RpcfxResponse post(RpcfxRequest req, String url) throws IOException {
+            String reqJson = JSON.toJSONString(req);
+            /*System.out.println("req json: "+reqJson);
+
+            // 1.可以复用client
+            // 2.尝试使用httpclient或者netty client
+            OkHttpClient client = new OkHttpClient();
+            final Request request = new Request.Builder()
+                    .url(url)
+                    .post(RequestBody.create(JSONTYPE, reqJson))
+                    .build();
+            String respJson = client.newCall(request).execute().body().string();
+            System.out.println("resp json: "+respJson);
+            return JSON.parseObject(respJson, RpcfxResponse.class);*/
+
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+            HttpPost httpPost= new HttpPost(url);
+
+            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Content-type", "application/json");
+
+            StringEntity stringEntity = new StringEntity(reqJson);
+            httpPost.setEntity(stringEntity);
+
+            System.out.println("Executing request " + httpPost.getRequestLine());
+
+            HttpResponse response = httpClient.execute(httpPost);
+
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader((response.getEntity().getContent())));
+
+
+            //Throw runtime exception if status code isn't 200
+            if (response.getStatusLine().getStatusCode() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + response.getStatusLine().getStatusCode());
+            }
+
+            //Create the StringBuffer object and store the response into it.
+            StringBuffer result = new StringBuffer();
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                System.out.println("Response : \n"+result.append(line));
+            }
+            return JSON.parseObject(result.toString(), RpcfxResponse.class);
+        }
+    }
+
+    /*public static class RpcfxInvocationHandler implements InvocationHandler {
 
         public static final MediaType JSONTYPE = MediaType.get("application/json; charset=utf-8");
 
@@ -109,5 +206,5 @@ public final class Rpcfx {
             System.out.println("resp json: "+respJson);
             return JSON.parseObject(respJson, RpcfxResponse.class);
         }
-    }
+    }*/
 }
